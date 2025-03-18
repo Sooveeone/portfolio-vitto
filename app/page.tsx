@@ -127,7 +127,11 @@ export default function Portfolio() {
             </h1>
             <div className="text-2xl md:text-4xl font-medium">
               <span>I think I am a </span>
-              <span className={`font-bold ${languageColors[currentLanguage]}`}>
+              <span
+                className={`font-bold ${
+                  languageColors[currentLanguage as keyof typeof languageColors]
+                }`}
+              >
                 <TypeAnimation
                   sequence={[
                     // Text, delay, callback
