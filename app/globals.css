@@ -3,19 +3,153 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Add these variables */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+
+  /* Chart colors */
+  --chart-1: 222.2 84% 4.9%;
+  --chart-2: 210 40% 96.1%;
+  --chart-3: 215.4 16.3% 46.9%;
+  --chart-4: 210 40% 98%;
+  --chart-5: 214.3 31.8% 91.4%;
+
+  /* Sidebar colors */
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 222.2 84% 4.9%;
+  --sidebar-primary: 222.2 47.4% 11.2%;
+  --sidebar-primary-foreground: 210 40% 98%;
+  --sidebar-accent: 210 40% 96.1%;
+  --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+  --sidebar-border: 214.3 31.8% 91.4%;
+  --sidebar-ring: 222.2 84% 4.9%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+}
+
+/* Add text shadow to white text for better visibility on dark background */
+.text-white {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r;
+  animation: colorChange 20s infinite;
+}
+
+@keyframes colorChange {
+  0%,
+  100% {
+    background-image: linear-gradient(
+      to right,
+      #3b82f6,
+      #2563eb
+    ); /* English - Blue */
+  }
+  10% {
+    background-image: linear-gradient(
+      to right,
+      #10b981,
+      #059669
+    ); /* Spanish - Green */
+  }
+  20% {
+    background-image: linear-gradient(
+      to right,
+      #f8fafc,
+      #e2e8f0
+    ); /* Chinese - White */
+  }
+  30% {
+    background-image: linear-gradient(
+      to right,
+      #fbbf24,
+      #d97706
+    ); /* Portuguese - Yellow */
+  }
+  40% {
+    background-image: linear-gradient(
+      to right,
+      #8b5cf6,
+      #7c3aed
+    ); /* Hindi - Purple */
+  }
+  50% {
+    background-image: linear-gradient(
+      to right,
+      #ef4444,
+      #dc2626
+    ); /* German - Red */
+  }
+  60% {
+    background-image: linear-gradient(
+      to right,
+      #14b8a6,
+      #0d9488
+    ); /* Dutch - Teal */
+  }
+  70% {
+    background-image: linear-gradient(
+      to right,
+      #ec4899,
+      #db2777
+    ); /* Japanese - Pink */
+  }
+  80% {
+    background-image: linear-gradient(
+      to right,
+      #a78bfa,
+      #8b5cf6
+    ); /* French - Lavender */
+  }
+  90% {
+    background-image: linear-gradient(
+      to right,
+      #22d3ee,
+      #06b6d4
+    ); /* Italian - Cyan */
+  }
+  95% {
+    background-image: linear-gradient(
+      to right,
+      #a7f3d0,
+      #6ee7b7
+    ); /* Indonesian - Mint */
+  }
+}
+
+/* Add this after the .text-gradient class */
+.text-gradient[data-text="开发者"] {
+  color: white;
+  background-image: none !important;
+  -webkit-text-fill-color: white;
+}
+
+/* Add this after the .text-gradient class */
+.chinese-text {
+  color: white !important;
+  background-image: none !important;
+  -webkit-text-fill-color: white !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
