@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import ProjectCard from "@/components/project-card";
 import SpaceBackground from "@/components/space-background";
 import { Planet, Rocket } from "@/components/space-animations";
+import SocialLinks from "@/components/social-links";
 
 export default function Portfolio() {
   const ref = useRef(null);
@@ -21,10 +22,10 @@ export default function Portfolio() {
 
   // Define language colors
   const languageColors = {
-    English: "text-blue-500",
+    English: "text-teal-500",
     Korean: "text-orange-500",
     Spanish: "text-green-500",
-    Chinese: "text-white",
+    Chinese: "text-zinc-500",
     Portuguese: "text-yellow-500",
     Hindi: "text-purple-500",
     German: "text-red-500",
@@ -32,45 +33,83 @@ export default function Portfolio() {
     Japanese: "text-pink-500",
     French: "text-indigo-400",
     Italian: "text-cyan-400",
-    Indonesian: "text-emerald-400",
+    Indonesian: "text-purple-500",
   };
 
   const projects = [
     {
       id: 1,
-      title: "E-commerce Platform",
-      description:
-        "A full-stack e-commerce platform built with Next.js and Stripe",
-      tags: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
-      image: "/placeholder.svg?height=300&width=400",
+      title: "vicode",
+      description: "Theory-Based Learning Platform",
+      tags: [
+        "Next.js",
+        "MongoDB",
+        "Express.js",
+        "React.js",
+        "Node.js",
+        "Typescript",
+        "Tailwind CSS",
+      ],
+      image: "/vicode.png",
+      url: "https://vicode.vercel.app/",
     },
     {
       id: 2,
-      title: "Weather App",
-      description: "A weather application that shows real-time weather data",
-      tags: ["React", "OpenWeather API", "CSS"],
-      image: "/placeholder.svg?height=300&width=400",
+      title: "Formify",
+      description:
+        "Transform form-filling with Formify: effortlessly convert voice to text in real time, streamlining tasks for finance, healthcare, education and more with enhanced accuracy, saving you time!",
+      tags: [
+        "React",
+        "websockets",
+        "openapi",
+        "django",
+        "Tailwind CSS",
+        "whisper",
+        "SQL",
+      ],
+      image: "/Formify.png",
+      url: "https://devpost.com/software/formify-1kzunp",
     },
     {
       id: 3,
-      title: "Task Management System",
+      title: "Google Search Algorithm",
       description:
-        "A collaborative task management system with real-time updates",
-      tags: ["React", "Firebase", "Material UI"],
-      image: "/placeholder.svg?height=300&width=400",
+        "A Google-inspired search engine simulator implementing PageRank and an inverted index for efficient web ranking and retrieval.",
+      tags: ["C", "Data Structures", "Algorithms"],
+      image: "/DSA3.png",
+      url: "https://github.com/Sooveeone/google-search-algo",
     },
+
     {
       id: 4,
-      title: "Portfolio Website",
+      title: "Pushy",
+      description: "Git Reimplemented in Dash, Shell Programming ",
+      tags: ["Shell Programming", "Bash", "Scripting", "Linux"],
+      image: "/pushy.png",
+      url: "https://github.com/Sooveeone/Pushy",
+    },
+    {
+      id: 5,
+      title: "Presto: Presentation Application",
       description:
-        "A personal portfolio website showcasing my projects and skills",
-      tags: ["Next.js", "Framer Motion", "Tailwind CSS"],
-      image: "/placeholder.svg?height=300&width=400",
+        "Worked in a team of two to design and develop a presentation web application using React.js",
+      tags: ["React.js", "Javascript", "HTML", "CSS"],
+      image: "/presto.png",
+      url: "https://github.com/Sooveeone/unsw-presto",
+    },
+    {
+      id: 6,
+      title: "Blackout Controller: Simple Satellite Communication Simulator",
+      description:
+        "Developed the backend for a Java-based satellite communication simulation",
+      tags: ["Java", "UML Diagram", "Object-oriented programming"],
+      image: "/2511.png",
+      url: "https://github.com/Sooveeone/B-Controller",
     },
   ];
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="relative min-h-screen overflow-hidden text-white">
       <SpaceBackground />
 
       {/* Hero Section */}
@@ -83,7 +122,7 @@ export default function Portfolio() {
           className="container max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8"
         >
           <div className="flex-1 space-y-6 text-center md:text-left relative z-20">
-            <h1 className="text-4xl md:text-6xl font-bold">
+            <h1 className="text-4xl md:text-6xl font-bold font-sans">
               Hi! I&apos;m Vitto.
             </h1>
             <div className="text-2xl md:text-4xl font-medium">
@@ -107,7 +146,7 @@ export default function Portfolio() {
                     "Desenvolvedor!",
                     3000,
                     () => setCurrentLanguage("Portuguese"),
-                    "डेवलपर!!",
+                    "डेवलपर!",
                     3000,
                     () => setCurrentLanguage("Hindi"),
                     "Entwickler!",
@@ -135,6 +174,11 @@ export default function Portfolio() {
                 />
               </span>
             </div>
+            <SocialLinks
+              linkedinUrl="https://www.linkedin.com/in/vittorio-christian-worang-47a917229/"
+              githubUrl="https://github.com/Sooveeone"
+              className="flex justify-center md:justify-start"
+            />
           </div>
 
           {/* Hide on small screens, show on medium and up */}

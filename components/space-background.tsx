@@ -1,237 +1,207 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { motion } from "framer-motion";
+
+interface Star {
+  id: number;
+  top: number;
+  left: number;
+  size: number;
+  opacity: number;
+  twinkleSpeed: number;
+  floatX: number;
+  floatY: number;
+  duration: number;
+}
+
+interface Meteor {
+  id: number;
+  active: boolean;
+  top: number;
+  left: number;
+}
 
 export default function SpaceBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [stars, setStars] = useState<Star[]>([]);
+  const [meteors, setMeteors] = useState<Meteor[]>([]);
+
+  const createStar = useCallback(
+    (id: number): Star => ({
+      id,
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      size: Math.random() * 1.5 + 0.5,
+      opacity: Math.random() * 0.5 + 0.3,
+      twinkleSpeed: Math.random() * 0.005 + 0.002,
+      floatX: Math.random() * 2 - 1, // Random value between -1 and 1
+      floatY: Math.random() * 2 - 1, // Random value between -1 and 1
+      duration: Math.random() * 3 + 4, // Random duration between 4 and 7 seconds
+    }),
+    []
+  );
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const newStars = Array.from({ length: 150 }, (_, i) => createStar(i));
+    setStars(newStars);
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const initialMeteors = Array.from({ length: 2 }, (_, i) => ({
+      id: i,
+      active: false,
+      top: Math.random() * 50,
+      left: -10,
+    }));
+    setMeteors(initialMeteors);
 
-    // Set canvas dimensions
-    const setCanvasDimensions = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+    const interval = setInterval(() => {
+      setMeteors((prev) => {
+        const newState = [...prev];
+        const inactiveIndex = newState.findIndex((meteor) => !meteor.active);
 
-    setCanvasDimensions();
-    window.addEventListener("resize", setCanvasDimensions);
+        if (inactiveIndex !== -1) {
+          newState[inactiveIndex] = {
+            ...newState[inactiveIndex],
+            active: true,
+            top: Math.random() * 50,
+          };
 
-    // Create stars - REDUCED COUNT for better performance
-    const stars: {
-      x: number;
-      y: number;
-      radius: number;
-      opacity: number;
-      speed: number;
-      twinkleSpeed: number;
-      twinkleDirection: boolean;
-    }[] = [];
-
-    // Reduce star count for better performance
-    const starCount = 150; // Reduced from 300
-    for (let i = 0; i < starCount; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5,
-        opacity: Math.random(),
-        speed: Math.random() * 0.05,
-        twinkleSpeed: Math.random() * 0.01,
-        twinkleDirection: Math.random() > 0.5,
-      });
-    }
-
-    // Create nebulas (subtle colored areas) - REDUCED COUNT
-    const nebulas: {
-      x: number;
-      y: number;
-      radius: number;
-      color: string;
-      opacity: number;
-    }[] = [];
-
-    const colors = [
-      "rgba(111, 66, 193, 0.03)", // Purple (more subtle)
-      "rgba(59, 130, 246, 0.03)", // Blue (more subtle)
-    ];
-
-    // Reduce nebula count
-    for (let i = 0; i < 2; i++) {
-      nebulas.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 300 + 200,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        opacity: Math.random() * 0.05, // More subtle
-      });
-    }
-
-    // Create fixed shooting stars (not scroll-dependent)
-    const shootingStars: {
-      x: number;
-      y: number;
-      length: number;
-      speed: number;
-      angle: number;
-      progress: number;
-      active: boolean;
-      timeToNextActivation: number;
-    }[] = [];
-
-    // Create 2 shooting stars that will activate periodically
-    for (let i = 0; i < 2; i++) {
-      shootingStars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * (canvas.height / 3),
-        length: Math.random() * 80 + 100,
-        speed: 2 + Math.random() * 3,
-        angle: (Math.PI / 4) * (1 + Math.random()),
-        progress: 0,
-        active: false,
-        timeToNextActivation: Math.random() * 5000 + 2000, // Random time between 2-7 seconds
-      });
-    }
-
-    // Last frame timestamp for animation timing
-    let lastFrameTime = 0;
-
-    // Animation
-    const animate = (timestamp: number) => {
-      // Calculate delta time for smooth animation regardless of frame rate
-      const deltaTime = timestamp - lastFrameTime;
-      lastFrameTime = timestamp;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw nebulas
-      nebulas.forEach((nebula) => {
-        const gradient = ctx.createRadialGradient(
-          nebula.x,
-          nebula.y,
-          0,
-          nebula.x,
-          nebula.y,
-          nebula.radius
-        );
-        gradient.addColorStop(0, nebula.color);
-        gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
-
-        ctx.beginPath();
-        ctx.arc(nebula.x, nebula.y, nebula.radius, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
-        ctx.fill();
-      });
-
-      // Draw stars
-      stars.forEach((star) => {
-        // Twinkle effect
-        if (star.twinkleDirection) {
-          star.opacity += star.twinkleSpeed;
-          if (star.opacity >= 1) {
-            star.twinkleDirection = false;
-          }
-        } else {
-          star.opacity -= star.twinkleSpeed;
-          if (star.opacity <= 0.2) {
-            star.twinkleDirection = true;
-          }
+          setTimeout(() => {
+            setMeteors((current) => {
+              const resetState = [...current];
+              resetState[inactiveIndex] = {
+                ...resetState[inactiveIndex],
+                active: false,
+              };
+              return resetState;
+            });
+          }, 8000);
         }
 
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-        ctx.fill();
-
-        // Add glow to some stars
-        if (star.radius > 1) {
-          ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius * 2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity * 0.2})`;
-          ctx.fill();
-        }
-
-        // Move stars
-        star.y += star.speed;
-
-        // Reset stars when they go off screen
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-        }
+        return newState;
       });
+    }, 10000);
 
-      // Update and draw shooting stars
-      shootingStars.forEach((star) => {
-        if (star.active) {
-          // Update position
-          star.progress += star.speed * (deltaTime / 16); // Normalize by 16ms (60fps)
+    return () => clearInterval(interval);
+  }, [createStar]);
 
-          // Calculate current position
-          const currentX = star.x + Math.cos(star.angle) * star.progress;
-          const currentY = star.y + Math.sin(star.angle) * star.progress;
+  useEffect(() => {
+    const twinkleInterval = setInterval(() => {
+      setStars((prevStars) =>
+        prevStars.map((star) => ({
+          ...star,
+          opacity: Math.max(
+            0.3,
+            Math.min(
+              0.8,
+              star.opacity + (Math.random() - 0.5) * star.twinkleSpeed
+            )
+          ),
+        }))
+      );
+    }, 100);
 
-          // Draw shooting star
-          const tailLength = 20; // Reduced from 30
-          for (let i = 0; i < tailLength; i++) {
-            const opacity = 1 - i / tailLength;
-
-            ctx.beginPath();
-            ctx.moveTo(
-              currentX - i * Math.cos(star.angle) * 2,
-              currentY - i * Math.sin(star.angle) * 2
-            );
-            ctx.lineTo(
-              currentX - (i + 1) * Math.cos(star.angle) * 2,
-              currentY - (i + 1) * Math.sin(star.angle) * 2
-            );
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-            ctx.lineWidth = 2;
-            ctx.stroke();
-          }
-
-          // Draw star head
-          ctx.beginPath();
-          ctx.arc(currentX, currentY, 2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, 1)`;
-          ctx.fill();
-
-          // Check if star has moved off screen
-          if (currentX > canvas.width || currentY > canvas.height) {
-            star.active = false;
-            star.progress = 0;
-            star.timeToNextActivation = Math.random() * 5000 + 2000;
-            star.x = Math.random() * canvas.width;
-            star.y = Math.random() * (canvas.height / 3);
-            star.angle = (Math.PI / 4) * (1 + Math.random());
-          }
-        } else {
-          // Count down to next activation
-          star.timeToNextActivation -= deltaTime;
-          if (star.timeToNextActivation <= 0) {
-            star.active = true;
-          }
-        }
-      });
-
-      requestAnimationFrame(animate);
-    };
-
-    animate(0);
-
-    return () => {
-      window.removeEventListener("resize", setCanvasDimensions);
-    };
+    return () => clearInterval(twinkleInterval);
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10"
-    />
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: -10,
+        overflow: "hidden",
+        backgroundColor: "black",
+      }}
+    >
+      {stars.map((star) => (
+        <motion.div
+          key={star.id}
+          style={{
+            position: "absolute",
+            top: `${star.top}%`,
+            left: `${star.left}%`,
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            backgroundColor: "white",
+            borderRadius: "50%",
+          }}
+          animate={{
+            opacity: star.opacity,
+            x: [0, star.floatX * 20, 0], // Move 20px in random direction
+            y: [0, star.floatY * 20, 0], // Move 20px in random direction
+          }}
+          transition={{
+            opacity: {
+              duration: 2,
+              ease: "easeInOut",
+            },
+            x: {
+              duration: star.duration,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            },
+            y: {
+              duration: star.duration,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            },
+          }}
+        />
+      ))}
+
+      {meteors.map(
+        (meteor) =>
+          meteor.active && (
+            <motion.div
+              key={`meteor-${meteor.id}`}
+              style={{
+                position: "absolute",
+                top: `${meteor.top}%`,
+                left: `${meteor.left}%`,
+                width: "3px",
+                height: "3px",
+                backgroundColor: "white",
+                borderRadius: "50%",
+                boxShadow: "0 0 20px 4px rgba(255, 255, 255, 0.7)",
+              }}
+              animate={{
+                x: ["0vw", "120vw"],
+                y: ["0vh", "70vh"],
+              }}
+              transition={{
+                duration: 8,
+                ease: "easeIn",
+              }}
+            >
+              {/* Meteor tail */}
+              <motion.div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  right: "0",
+                  width: "100px",
+                  height: "2px",
+                  background:
+                    "linear-gradient(90deg, rgba(255, 255, 255, 0.81) 0%, rgba(234, 238, 25, 0) 100%)",
+                  transformOrigin: "right center",
+                }}
+                animate={{
+                  scaleX: [0.3, 1],
+                  opacity: [0.8, 0],
+                }}
+                transition={{
+                  duration: 0.9,
+                  ease: "easeOut",
+                  repeat: Number.POSITIVE_INFINITY,
+                  repeatDelay: 0.1,
+                }}
+              />
+            </motion.div>
+          )
+      )}
+    </div>
   );
 }

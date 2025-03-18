@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link"; // Import Link from Next.js
 import { motion } from "framer-motion";
 
 interface Project {
@@ -9,6 +10,7 @@ interface Project {
   description: string;
   tags: string[];
   image: string;
+  url?: string; // Add url property
 }
 
 interface ProjectCardProps {
@@ -16,14 +18,8 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      className="bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/50 hover:border-gray-700/70 transition-all duration-300 group"
-    >
+  const cardContent = (
+    <>
       <div className="relative h-48 w-full overflow-hidden">
         <Image
           src={project.image || "/placeholder.svg"}
@@ -49,6 +45,31 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
       </div>
+    </>
+  );
+
+  // If URL exists, wrap the content in a clickable Link
+  return project.url ? (
+    <Link href={project.url} target="_blank" rel="noopener noreferrer">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="cursor-pointer bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/50 hover:border-gray-700/70 transition-all duration-300 group"
+      >
+        {cardContent}
+      </motion.div>
+    </Link>
+  ) : (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className="bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/50 hover:border-gray-700/70 transition-all duration-300 group"
+    >
+      {cardContent}
     </motion.div>
   );
 }
