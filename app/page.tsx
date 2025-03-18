@@ -79,7 +79,6 @@ export default function Portfolio() {
       image: "/DSA3.png",
       url: "https://github.com/Sooveeone/google-search-algo",
     },
-
     {
       id: 4,
       title: "Pushy",
@@ -119,16 +118,16 @@ export default function Portfolio() {
       >
         <motion.div
           style={{ opacity, scale }}
-          className="container max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8"
+          className="container max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-9"
         >
           <div className="flex-1 space-y-6 text-center md:text-left relative z-20">
             <h1 className="text-4xl md:text-6xl font-bold font-sans">
               Hi! I&apos;m Vitto.
             </h1>
-            <div className="text-2xl md:text-4xl font-medium">
-              <span>I think I am a </span>
+            <div className="text-2xl md:text-4xl font-medium whitespace-nowrap overflow-hidden max-w-fit">
+              <span className="inline-block">I think I am a&nbsp;</span>
               <span
-                className={`font-bold ${
+                className={`font-bold inline-block ${
                   languageColors[currentLanguage as keyof typeof languageColors]
                 }`}
               >
@@ -168,7 +167,7 @@ export default function Portfolio() {
                     "Sviluppatore!",
                     3000,
                     () => setCurrentLanguage("Italian"),
-                    "Pengembang!",
+                    "مطور!",
                     3000,
                     () => setCurrentLanguage("Indonesian"),
                   ]}
