@@ -61,6 +61,7 @@ export default function Portfolio() {
       tags: [
         "React",
         "websockets",
+        "Python",
         "openapi",
         "django",
         "Tailwind CSS",
@@ -91,8 +92,8 @@ export default function Portfolio() {
       id: 5,
       title: "Presto: Presentation Application",
       description:
-        "Worked in a team of two to design and develop a presentation web application using React.js",
-      tags: ["React.js", "Javascript", "HTML", "CSS"],
+        "Worked in a team of two to design and develop a presentation web application",
+      tags: ["React.js", "Javascript", "HTML", "CSS", "Auth"],
       image: "/presto.png",
       url: "https://github.com/Sooveeone/unsw-presto",
     },
@@ -100,7 +101,7 @@ export default function Portfolio() {
       id: 6,
       title: "Blackout Controller: Simple Satellite Communication Simulator",
       description:
-        "Developed the backend for a Java-based satellite communication simulation",
+        "Developed the backend for a Java-based satellite communication simulation, applying Object-Oriented Programming principles.",
       tags: ["Java", "UML Diagram", "Object-oriented programming"],
       image: "/2511.png",
       url: "https://github.com/Sooveeone/B-Controller",
@@ -155,7 +156,7 @@ export default function Portfolio() {
                     "Entwickler!",
                     3000,
                     () => setCurrentLanguage("German"),
-                    "Ontwikkelaar!",
+                    "Nhà phát triển!",
                     3000,
                     () => setCurrentLanguage("Dutch"),
                     "デベロッパー!",
