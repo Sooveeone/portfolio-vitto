@@ -52,10 +52,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return project.url ? (
     <Link href={project.url} target="_blank" rel="noopener noreferrer">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
+        transition={{ 
+          duration: 0.7, 
+          ease: "easeOut"
+        }}
+        viewport={{ once: true, amount: 0.2, margin: "0px 0px -100px 0px" }}
         className="cursor-pointer bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/50 hover:border-gray-700/70 transition-all duration-300 group h-full flex flex-col"
       >
         {cardContent}
@@ -63,10 +66,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     </Link>
   ) : (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.7, 
+        ease: "easeOut"
+      }}
+      viewport={{ once: true, amount: 0.2, margin: "0px 0px -100px 0px" }}
       className="bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/50 hover:border-gray-700/70 transition-all duration-300 group h-full flex flex-col"
     >
       {cardContent}

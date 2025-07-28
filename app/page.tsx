@@ -158,10 +158,10 @@ export default function Portfolio() {
             <h1 className="text-4xl md:text-6xl font-bold font-sans">
               Hi! I&apos;m Vitto.
             </h1>
-            <div className="text-2xl md:text-4xl font-medium whitespace-nowrap overflow-hidden max-w-fit">
+            <div className="text-2xl md:text-4xl font-medium whitespace-nowrap">
               <span className="inline-block">I think I am a&nbsp;</span>
               <span
-                className={`font-bold inline-block ${
+                className={`font-bold inline-block min-w-[200px] md:min-w-[320px] ${
                   languageColors[currentLanguage as keyof typeof languageColors]
                 }`}
               >
