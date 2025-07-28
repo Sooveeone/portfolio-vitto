@@ -40,8 +40,8 @@ export default function Portfolio() {
     {
       id: 1,
       title: "Drift",
-      description: "A modern web application with sleek design and functionality.",
-      tags: ["React", "TypeScript", "Tailwind CSS"],
+      description: "Drift transforms your big goals into manageable steps and builds a personalized daily schedule to keep you on track. As you make progress, the Achievement Archive captures and celebrates every milestone, motivating you to keep moving forward.",
+      tags: ["React", "TypeScript", "Tailwind CSS", "MongoDB","Express.js","Node.js","AWS S3", "Qdrant", "RAG", "LangChain"],
       image: "/drift-background.jpg",
       url: "https://github.com/Sooveeone/drift",
     },
@@ -52,12 +52,12 @@ export default function Portfolio() {
         "Transform form-filling with Formify: effortlessly convert voice to text in real time, streamlining tasks for finance, healthcare, education and more with enhanced accuracy, saving you time!",
       tags: [
         "React",
-        "websockets",
+        "WebSockets",
         "Python",
-        "openapi",
-        "django",
+        "OpenAI",
+        "Django",
         "Tailwind CSS",
-        "whisper",
+        "Whisper",
         "SQL",
       ],
       image: "/Formify.png",
@@ -66,7 +66,7 @@ export default function Portfolio() {
     {
       id: 3,
       title: "vicode",
-      description: "Theory-Based Learning Platform",
+      description: "Computer Science Theory-Based Learning Platform",
       tags: [
         "Next.js",
         "MongoDB",
@@ -74,6 +74,7 @@ export default function Portfolio() {
         "React.js",
         "Node.js",
         "Typescript",
+        "GSAP",
         "Tailwind CSS",
       ],
       image: "/vicode.png",
@@ -82,7 +83,7 @@ export default function Portfolio() {
     {
       id: 4,
       title: "Pushy",
-      description: "Git Reimplemented in Dash, Shell Programming ",
+      description: "Git Reimplemented in Dash, Shell Programming.",
       tags: ["Shell Programming", "Bash", "Scripting", "Linux"],
       image: "/pushy.png",
       url: "https://github.com/Sooveeone/Pushy",
@@ -99,8 +100,8 @@ export default function Portfolio() {
     {
       id: 6,
       title: "Airtable Clone",
-      description: "A database management system inspired by Airtable with intuitive interface.",
-      tags: ["Next.js", "Database", "React", "TypeScript"],
+      description: "This is a modern Airtable clone built with the T3 Stack. It allows users to create and manage bases, tables, rows, and columns with an interface inspired by Airtable. The goal of this project is to showcase a performant full-stack application with clean architecture, optimized rendering, and a smooth user experience with very large datasets.",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "tRPC", "Prisma", "Zod", "PostgreSQL", "React Query"],
       image: "/airtable-logo.png",
       url: "https://github.com/Sooveeone/airtable-clone",
     },
@@ -108,11 +109,11 @@ export default function Portfolio() {
       id: 7,
       title: "Presto: Presentation Application",
       description:
-        "Worked in a team of two to design and develop a presentation web application",
+        "Worked in a team of two to design and develop a presentation web application.",
       tags: ["React.js", "Javascript", "HTML", "CSS", "Auth"],
       image: "/presto.png",
       url: "https://github.com/Sooveeone/unsw-presto",
-    },
+    },  
     {
       id: 8,
       title: "Blackout Controller: Simple Satellite Communication Simulator",
@@ -125,18 +126,18 @@ export default function Portfolio() {
     {
       id: 9,
       title: "Discussion Forum over UDP/TCP",
-      description: "An interactive discussion platform for engaging conversations and community building.",
-      tags: ["React", "Node.js", "Express", "MongoDB"],
+      description: "Built a multi-threaded Python forum system using UDP for command processing with custom reliability protocols, and TCP for file transfers. Implemented application-layer sequence numbering and retransmission for reliable UDP communication while supporting concurrent users and discussion thread management.",
+      tags: ["UDP/TCP", "Socket Programming", "Python"],
       image: "/3331ass.png",
       url: "https://github.com/Sooveeone/discussion-form",
     },
     {
       id: 10,
       title: "Academic Hub",
-      description: "A comprehensive academic management platform for students and educators.",
-      tags: ["Next.js", "React", "Database", "Auth"],
+      description: "Academics have lots of spinning plates to keep track of: HDR students, journal papers, conference papers, deadlines, reviewing of journal papers, and undergraduate students. They also have to keep track of their metrics for things like grant proposals and award applications. The goal of this web application is to create an all-in-one web interface that allows academics to keep all of the relevant information in one place.",
+      tags: ["MongoDB", "Express.js", "React", "Node.js", "Tailwind CSS", "TypeScript", "Docker"],
       image: "/academic-hub.jpg",
-      url: "https://github.com/Sooveeone/academic-hub",
+      url: "https://github.com/unsw-cse-comp99-3900/capstone-project-2025-t1-25t1-3900-h12b-celery",
     },
   ];
 
