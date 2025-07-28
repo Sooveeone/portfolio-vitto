@@ -39,19 +39,11 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: "vicode",
-      description: "Theory-Based Learning Platform",
-      tags: [
-        "Next.js",
-        "MongoDB",
-        "Express.js",
-        "React.js",
-        "Node.js",
-        "Typescript",
-        "Tailwind CSS",
-      ],
-      image: "/vicode.png",
-      url: "https://vicode.vercel.app/",
+      title: "Drift",
+      description: "Drift transforms your big goals into manageable steps and builds a personalized daily schedule to keep you on track. As you make progress, the Achievement Archive captures and celebrates every milestone, motivating you to keep moving forward.",
+      tags: ["React", "TypeScript", "Tailwind CSS", "MongoDB","Express.js","Node.js","AWS S3", "Qdrant", "RAG", "LangChain"],
+      image: "/drift-background.jpg",
+      url: "https://github.com/Sooveeone/drift",
     },
     {
       id: 2,
@@ -60,12 +52,12 @@ export default function Portfolio() {
         "Transform form-filling with Formify: effortlessly convert voice to text in real time, streamlining tasks for finance, healthcare, education and more with enhanced accuracy, saving you time!",
       tags: [
         "React",
-        "websockets",
+        "WebSockets",
         "Python",
-        "openapi",
-        "django",
+        "OpenAI",
+        "Django",
         "Tailwind CSS",
-        "whisper",
+        "Whisper",
         "SQL",
       ],
       image: "/Formify.png",
@@ -73,6 +65,31 @@ export default function Portfolio() {
     },
     {
       id: 3,
+      title: "vicode",
+      description: "Computer Science Theory-Based Learning Platform",
+      tags: [
+        "Next.js",
+        "MongoDB",
+        "Express.js",
+        "React.js",
+        "Node.js",
+        "Typescript",
+        "GSAP",
+        "Tailwind CSS",
+      ],
+      image: "/vicode.png",
+      url: "https://vicode.vercel.app/",
+    },
+    {
+      id: 4,
+      title: "Pushy",
+      description: "Git Reimplemented in Dash, Shell Programming.",
+      tags: ["Shell Programming", "Bash", "Scripting", "Linux"],
+      image: "/pushy.png",
+      url: "https://github.com/Sooveeone/Pushy",
+    },
+    {
+      id: 5,
       title: "Google Search Algorithm",
       description:
         "A Google-inspired search engine simulator implementing PageRank and an inverted index for efficient web ranking and retrieval.",
@@ -81,30 +98,46 @@ export default function Portfolio() {
       url: "https://github.com/Sooveeone/google-search-algo",
     },
     {
-      id: 4,
-      title: "Pushy",
-      description: "Git Reimplemented in Dash, Shell Programming ",
-      tags: ["Shell Programming", "Bash", "Scripting", "Linux"],
-      image: "/pushy.png",
-      url: "https://github.com/Sooveeone/Pushy",
+      id: 6,
+      title: "Airtable Clone",
+      description: "This is a modern Airtable clone built with the T3 Stack. It allows users to create and manage bases, tables, rows, and columns with an interface inspired by Airtable. The goal of this project is to showcase a performant full-stack application with clean architecture, optimized rendering, and a smooth user experience with very large datasets.",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "tRPC", "Prisma", "Zod", "PostgreSQL", "React Query"],
+      image: "/airtable-logo.png",
+      url: "https://github.com/Sooveeone/airtable-clone",
     },
     {
-      id: 5,
+      id: 7,
       title: "Presto: Presentation Application",
       description:
-        "Worked in a team of two to design and develop a presentation web application",
+        "Worked in a team of two to design and develop a presentation web application.",
       tags: ["React.js", "Javascript", "HTML", "CSS", "Auth"],
       image: "/presto.png",
       url: "https://github.com/Sooveeone/unsw-presto",
-    },
+    },  
     {
-      id: 6,
+      id: 8,
       title: "Blackout Controller: Simple Satellite Communication Simulator",
       description:
         "Developed the backend for a Java-based satellite communication simulation, applying Object-Oriented Programming principles.",
       tags: ["Java", "UML Diagram", "Object-oriented programming"],
       image: "/2511.png",
       url: "https://github.com/Sooveeone/B-Controller",
+    },
+    {
+      id: 9,
+      title: "Discussion Forum over UDP/TCP",
+      description: "Built a multi-threaded Python forum system using UDP for command processing with custom reliability protocols, and TCP for file transfers. Implemented application-layer sequence numbering and retransmission for reliable UDP communication while supporting concurrent users and discussion thread management.",
+      tags: ["UDP/TCP", "Socket Programming", "Python"],
+      image: "/3331ass.png",
+      url: "https://github.com/Sooveeone/discussion-form",
+    },
+    {
+      id: 10,
+      title: "Academic Hub",
+      description: "Academics have lots of spinning plates to keep track of: HDR students, journal papers, conference papers, deadlines, reviewing of journal papers, and undergraduate students. They also have to keep track of their metrics for things like grant proposals and award applications. The goal of this web application is to create an all-in-one web interface that allows academics to keep all of the relevant information in one place.",
+      tags: ["MongoDB", "Express.js", "React", "Node.js", "Tailwind CSS", "TypeScript", "Docker"],
+      image: "/academic-hub.jpg",
+      url: "https://github.com/unsw-cse-comp99-3900/capstone-project-2025-t1-25t1-3900-h12b-celery",
     },
   ];
 
@@ -125,52 +158,52 @@ export default function Portfolio() {
             <h1 className="text-4xl md:text-6xl font-bold font-sans">
               Hi! I&apos;m Vitto.
             </h1>
-            <div className="text-2xl md:text-4xl font-medium whitespace-nowrap overflow-hidden max-w-fit">
+            <div className="text-2xl md:text-4xl font-medium whitespace-nowrap">
               <span className="inline-block">I think I am a&nbsp;</span>
               <span
-                className={`font-bold inline-block ${
+                className={`font-bold inline-block min-w-[200px] md:min-w-[320px] ${
                   languageColors[currentLanguage as keyof typeof languageColors]
                 }`}
               >
                 <TypeAnimation
                   sequence={[
-                    // Text, delay, callback
+                    // Text, delay, callback - Set language BEFORE showing text
                     "Developer!",
                     3000,
-                    () => setCurrentLanguage("English"),
+                    () => setCurrentLanguage("Korean"),
                     "개발자!",
                     3000,
-                    () => setCurrentLanguage("Korean"),
+                    () => setCurrentLanguage("Spanish"),
                     "Desarrollador!",
                     3000,
-                    () => setCurrentLanguage("Spanish"),
+                    () => setCurrentLanguage("Chinese"),
                     "开发者!",
                     3000,
-                    () => setCurrentLanguage("Chinese"),
+                    () => setCurrentLanguage("Portuguese"),
                     "Desenvolvedor!",
                     3000,
-                    () => setCurrentLanguage("Portuguese"),
+                    () => setCurrentLanguage("Hindi"),
                     "डेवलपर!",
                     3000,
-                    () => setCurrentLanguage("Hindi"),
+                    () => setCurrentLanguage("German"),
                     "Entwickler!",
                     3000,
-                    () => setCurrentLanguage("German"),
+                    () => setCurrentLanguage("Dutch"),
                     "Nhà phát triển!",
                     3000,
-                    () => setCurrentLanguage("Dutch"),
+                    () => setCurrentLanguage("Japanese"),
                     "デベロッパー!",
                     3000,
-                    () => setCurrentLanguage("Japanese"),
+                    () => setCurrentLanguage("French"),
                     "Développeur!",
                     3000,
-                    () => setCurrentLanguage("French"),
+                    () => setCurrentLanguage("Italian"),
                     "Sviluppatore!",
                     3000,
-                    () => setCurrentLanguage("Italian"),
+                    () => setCurrentLanguage("Indonesian"),
                     "مطور!",
                     3000,
-                    () => setCurrentLanguage("Indonesian"),
+                    () => setCurrentLanguage("English"),
                   ]}
                   wrapper="span"
                   speed={30}

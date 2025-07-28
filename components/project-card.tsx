@@ -29,12 +29,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-1">
         <h3 className="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors duration-300">
           {project.title}
         </h3>
-        <p className="text-gray-400 mb-4 text-sm">{project.description}</p>
-        <div className="flex flex-wrap gap-2">
+        <p className="text-gray-400 mb-4 text-sm flex-1">{project.description}</p>
+        <div className="flex flex-wrap gap-2 mt-auto">
           {project.tags.map((tag) => (
             <span
               key={tag}
@@ -48,26 +48,32 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     </>
   );
 
-  // If URL exists, wrap the content in a clickable Link
+  //
   return project.url ? (
     <Link href={project.url} target="_blank" rel="noopener noreferrer">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="cursor-pointer bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/50 hover:border-gray-700/70 transition-all duration-300 group"
+        transition={{ 
+          duration: 0.7, 
+          ease: "easeOut"
+        }}
+        viewport={{ once: true, amount: 0.2, margin: "0px 0px -100px 0px" }}
+        className="cursor-pointer bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/50 hover:border-gray-700/70 transition-all duration-300 group h-full flex flex-col"
       >
         {cardContent}
       </motion.div>
     </Link>
   ) : (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      className="bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/50 hover:border-gray-700/70 transition-all duration-300 group"
+      transition={{ 
+        duration: 0.7, 
+        ease: "easeOut"
+      }}
+      viewport={{ once: true, amount: 0.2, margin: "0px 0px -100px 0px" }}
+      className="bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/50 hover:border-gray-700/70 transition-all duration-300 group h-full flex flex-col"
     >
       {cardContent}
     </motion.div>
