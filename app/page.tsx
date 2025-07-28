@@ -39,19 +39,11 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: "vicode",
-      description: "Theory-Based Learning Platform",
-      tags: [
-        "Next.js",
-        "MongoDB",
-        "Express.js",
-        "React.js",
-        "Node.js",
-        "Typescript",
-        "Tailwind CSS",
-      ],
-      image: "/vicode.png",
-      url: "https://vicode.vercel.app/",
+      title: "Drift",
+      description: "A modern web application with sleek design and functionality.",
+      tags: ["React", "TypeScript", "Tailwind CSS"],
+      image: "/drift-background.jpg",
+      url: "https://github.com/Sooveeone/drift",
     },
     {
       id: 2,
@@ -73,12 +65,19 @@ export default function Portfolio() {
     },
     {
       id: 3,
-      title: "Google Search Algorithm",
-      description:
-        "A Google-inspired search engine simulator implementing PageRank and an inverted index for efficient web ranking and retrieval.",
-      tags: ["C", "Data Structures", "Algorithms"],
-      image: "/DSA3.png",
-      url: "https://github.com/Sooveeone/google-search-algo",
+      title: "vicode",
+      description: "Theory-Based Learning Platform",
+      tags: [
+        "Next.js",
+        "MongoDB",
+        "Express.js",
+        "React.js",
+        "Node.js",
+        "Typescript",
+        "Tailwind CSS",
+      ],
+      image: "/vicode.png",
+      url: "https://vicode.vercel.app/",
     },
     {
       id: 4,
@@ -90,6 +89,23 @@ export default function Portfolio() {
     },
     {
       id: 5,
+      title: "Google Search Algorithm",
+      description:
+        "A Google-inspired search engine simulator implementing PageRank and an inverted index for efficient web ranking and retrieval.",
+      tags: ["C", "Data Structures", "Algorithms"],
+      image: "/DSA3.png",
+      url: "https://github.com/Sooveeone/google-search-algo",
+    },
+    {
+      id: 6,
+      title: "Airtable Clone",
+      description: "A database management system inspired by Airtable with intuitive interface.",
+      tags: ["Next.js", "Database", "React", "TypeScript"],
+      image: "/airtable-logo.png",
+      url: "https://github.com/Sooveeone/airtable-clone",
+    },
+    {
+      id: 7,
       title: "Presto: Presentation Application",
       description:
         "Worked in a team of two to design and develop a presentation web application",
@@ -98,13 +114,29 @@ export default function Portfolio() {
       url: "https://github.com/Sooveeone/unsw-presto",
     },
     {
-      id: 6,
+      id: 8,
       title: "Blackout Controller: Simple Satellite Communication Simulator",
       description:
         "Developed the backend for a Java-based satellite communication simulation, applying Object-Oriented Programming principles.",
       tags: ["Java", "UML Diagram", "Object-oriented programming"],
       image: "/2511.png",
       url: "https://github.com/Sooveeone/B-Controller",
+    },
+    {
+      id: 9,
+      title: "Discussion Forum over UDP/TCP",
+      description: "An interactive discussion platform for engaging conversations and community building.",
+      tags: ["React", "Node.js", "Express", "MongoDB"],
+      image: "/3331ass.png",
+      url: "https://github.com/Sooveeone/discussion-form",
+    },
+    {
+      id: 10,
+      title: "Academic Hub",
+      description: "A comprehensive academic management platform for students and educators.",
+      tags: ["Next.js", "React", "Database", "Auth"],
+      image: "/academic-hub.jpg",
+      url: "https://github.com/Sooveeone/academic-hub",
     },
   ];
 
