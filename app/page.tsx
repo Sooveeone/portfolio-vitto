@@ -78,7 +78,7 @@ export default function Portfolio() {
         "Tailwind CSS",
       ],
       image: "/vicode.png",
-      url: "https://vicode.vercel.app/",
+      url: "https://www.vicode.live",
     },
     {
       id: 4,
